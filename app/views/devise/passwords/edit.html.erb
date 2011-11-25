@@ -1,0 +1,16 @@
+<h2>Change your password</h2>
+
+<%= semantic_form_for(resource, :as => resource_name,
+                      :url => password_path(resource_name),
+                      :html => { :method => :put }) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :reset_password_token, :as => :hidden %>
+    <%= f.input :password, :label => "New password" %>
+    <%= f.input :password_confirmation, :label => "Confirm new password" %>
+  <% end %>
+  <%= f.buttons do %>
+    <%= f.commit_button "Change my password" %>
+  <% end %>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

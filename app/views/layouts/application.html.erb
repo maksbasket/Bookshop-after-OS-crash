@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Depot</title>
+  <%= stylesheet_link_tag    "application" %>
+  <!--[if IE 6]><%= stylesheet_link_tag 'ie/ie6' %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag 'ie/ie7' %><![endif]-->
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+  <body id="store" >
+    <div id="banner" >
+      <%= image_tag("logo.png") %>
+      <%= @page_title || "Pragmatic Bookshelf" %>
+    </div>
+    <div id="columns" >
+      <div id="side" >
+        <div id="user_nav">
+          <% if user_signed_in? %>
+            <%= current_user.name %><br />
+            <%= link_to "Edit profile", edit_user_registration_path %><br />
+            <%= link_to "Sign out", destroy_user_session_path,
+                                 :method => :delete %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> or 
+            <%= link_to "sign in", new_user_session_path %>
+          <% end %><br />
+        </div>
+        <div id="time">
+          <%= format_time Time.now %>
+        </div>
+        <% if @cart %>
+          <%= render @cart %>
+        <% end %>
+        <%= link_to "Home", root_url %><br />
+        <%= link_to "Products", products_path %><br />
+        <% if can? :read, Order %>
+          <%= link_to "Orders", orders_path %><br />
+        <% end %>
+      </div>
+      <div id="main" >
+        <% flash.each do |key, value| %>
+          <p id="<%= key %>"><%= value %></p>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

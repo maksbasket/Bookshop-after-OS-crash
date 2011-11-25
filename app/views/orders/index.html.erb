@@ -1,0 +1,19 @@
+<h1>Listing orders</h1>
+
+<table id="orders">
+  <% @orders.each do |order| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%= order.name %></td>
+      <td class="address"><%= order.address %></td>
+      <td class="email"><%= order.email %></td>
+      <td class="pay_type"><%= order.pay_type.name %></td>
+      <td class="ship_date"><%= format_time order.ship_date %></td>
+      <td class="list_actions">
+        <%= link_to 'Show', order %><br/>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= will_paginate @orders %></p>
+

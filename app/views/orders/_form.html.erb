@@ -1,0 +1,12 @@
+<%= semantic_form_for @order do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :address, :input_html => { :rows => 3 } %>
+    <%= f.input :email %>
+    <%= f.input :pay_type, :collection => PayType.all,
+                :prompt => 'Select a payment method' %>
+  <% end %>
+  <%= f.buttons do %>
+    <%= f.commit_button %>
+  <% end %>
+<% end %>

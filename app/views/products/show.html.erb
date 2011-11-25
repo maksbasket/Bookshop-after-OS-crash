@@ -1,0 +1,29 @@
+<div id="product">
+  <p>
+    <%= render 'images', :product => @product %>
+  </p>
+  
+  <p>
+    <b>Title:</b>
+    <%= @product.title %>
+  </p>
+  
+  <p>
+    <b>Description:</b>
+    <%= sanitize @product.description %>
+  </p>
+  
+  <p>
+    <b>Price:</b>
+    <%= price_for @product %>
+  </p>
+  <% if can? :update, @product %>
+    <%= link_to 'Edit', edit_product_path(@product) %> |
+  <% end %>
+  <%= link_to 'Back', products_path %>
+  <% if can? :create, Comment %>
+    | <%= link_to_new_comment 'Add a Comment', @product %>
+  <% end %>
+</div>
+
+<%= render 'comments', :product => @product %>

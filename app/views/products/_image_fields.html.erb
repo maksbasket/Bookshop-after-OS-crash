@@ -1,0 +1,6 @@
+<div class="with_inputs">
+  <%= render_image_for f.object %>
+</div>
+<%= f.link_to_remove "Remove Image", :class => 'with_inputs' %>
+<%= f.input :file, :as => :file, :label => "Image", :hint => "Select Image" %>
+<%= f.input :retained_file, :as => :hidden %>

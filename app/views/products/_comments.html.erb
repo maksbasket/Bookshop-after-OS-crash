@@ -1,0 +1,8 @@
+<ul id="comments">
+  <% nested_set_options product.root_comment, nil,
+                        :include_root => false do |comment, level| %>
+    <%= comment_li comment, level do %>
+      <%= render comment, :product => @product %>
+    <% end %>
+  <% end %>
+</ul>

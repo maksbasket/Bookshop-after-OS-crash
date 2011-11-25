@@ -1,0 +1,18 @@
+<tr <%= "id=current_item" if line_item == @current_item %>>
+  <td class="quantity", data-quantity="<%= line_item.quantity %>">
+    <%= line_item.quantity %>&times;
+  </td>
+  <td>
+    <%= line_item.product.title %>
+  </td>
+  <td class="item_price">
+    <%= price_for line_item.total_price %>
+  </td>
+  <% if with_remove_button ||= false %>
+    <td>
+      <%= button_to 'Remove', line_item_path(line_item),
+                      :method => :delete, :confirm => 'Are you sure?',
+                      :remote => true %>
+    </td>
+  <% end %>
+</tr>

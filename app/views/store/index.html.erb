@@ -1,0 +1,16 @@
+<h1>Your pragmatic catalog</h1>
+<% if @counter > 5 %>
+  (You saw it <%= pluralize(@counter, 'time') %>)
+<% end %>
+<% @products.each do |product| %>
+  <div class="entry">
+    <%= render 'products/images', :product => product %>
+    <h3><%= product.title %></h3>
+    <%= sanitize product.description %>
+    <div class="price_line">
+      <span class="price"><%= price_for product %></span>
+      <%= button_to 'Add to Cart', line_items_path(:product_id => product),
+                    :remote => true %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<div class="name">
+  <%= comment.user.name %>
+</div>
+<div class="time">
+  <%= format_time comment.created_at %>
+</div>
+<div class="text">
+  <%= simple_format comment.text %>
+</div>
+<% if can? :create, Comment %>
+  <%= link_to_new_comment "Reply", product, comment %>
+<% end %>

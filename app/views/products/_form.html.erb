@@ -1,0 +1,12 @@
+<%= semantic_nested_form_for(@product, :html => { :multipart => true }) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :title , :hint => "Must be unique"%>
+    <%= f.input :description , :input_html => { :rows => 10 }%>
+    <%= f.input :price %>
+    <%= f.semantic_fields_for :images %>
+    <%= f.link_to_add "Add Image", :images, :class => 'with_inputs' %>
+  <% end %>
+  <%= f.buttons do %>
+    <%= f.commit_button %>
+  <% end %>
+<% end %>
